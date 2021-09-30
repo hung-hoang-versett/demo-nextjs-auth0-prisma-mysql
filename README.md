@@ -5,8 +5,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 1. yarn
-2. config .env the database information
+2. copy .env.example to .env then config database information and auth0
 3. npx prisma migrate dev --name init (generate migration)
+4. yarn dev
 
 # Auth0
 
