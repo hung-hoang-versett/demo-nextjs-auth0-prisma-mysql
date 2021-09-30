@@ -2,8 +2,17 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import { useUser } from "@auth0/nextjs-auth0";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import useSWR from "swr";
+import { fetcher } from "../utils/helper";
 
-const Home: NextPage = () => {
+const Profile: NextPage = () => {
+  const { user, error, isLoading }: any = useUser();
+  useSWR("/api/profile", fetcher);
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,13 +22,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome</h1>
-
-        <div className={styles.grid}>
-          <a href="/api/auth/login" className={styles.card}>
-            <h2>Login</h2>
-          </a>
-        </div>
+        <h1 className={styles.title}>
+          Welcome {user.name}! <a href="/api/auth/logout">Logout</a>
+        </h1>
       </main>
 
       <footer className={styles.footer}>
@@ -38,4 +43,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default withPageAuthRequired(Profile);
