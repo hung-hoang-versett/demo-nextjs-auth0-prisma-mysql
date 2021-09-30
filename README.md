@@ -12,3 +12,8 @@ First, run the development server:
 # Auth0
 
 https://manage.auth0.com/dashboard/us/dev-4ki68672/applications/oTAmcqHFdJfxJOMJW1WVem5LaWIq5jcG/quickstart
+
+# Test
+
+Db: https://prnt.sc/1u797gl
+UI: https://prnt.sc/1u77uil
